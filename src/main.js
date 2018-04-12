@@ -7,24 +7,6 @@ const url = require("url");
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow;
 
-/**
- * 
- * browserWindow, la panatalla padre
- * width, anchura pantalla modal 
- * height altura pantalla modal
- * url, url del código a cargar en el proceso renderer
- */
-function createFormModal(browserWindow, width, height, url) {
-  let winForm = new BrowserWindow({
-    width: width,
-    height: height,
-    frame: false,
-    parent: browserWindow,
-    modal: true
-  })
-  winForm.loadURL(url)
-}
-
 function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({ width: 800, height: 600 });
@@ -32,10 +14,6 @@ function createWindow() {
   // and load the index.html of the app.
   mainWindow.loadURL(`file://${__dirname}/renderers/index.html`);
 
-  // createFormModal(mainWindow, 400, 350, `file://${__dirname}/renderers/form_create_filestorage.html`)
-  // createFormModal(mainWindow, 400, 350, `file://${__dirname}/renderers/form_load_filestorage.html`)
-  // createFormModal(mainWindow, 500, 550, `file://${__dirname}/renderers/form_add_keyregister.html`)
-  
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
@@ -48,7 +26,8 @@ function createWindow() {
   });
 
   // Menú
-  let templateMenu = require('./menu.js').templateMenu
+  let mainMenu = require('./menu.js').mainMenu
+  let templateMenu = mainMenu(mainWindow)
   Menu.setApplicationMenu(Menu.buildFromTemplate(templateMenu))
 }
 
