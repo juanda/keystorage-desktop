@@ -21,7 +21,7 @@ class GUI {
     console.log(app_title);
     this.app_title.innerHTML =
       "Almacén de claves ACME (Carga un almacén para comenzar)"
-    this.form.style.display = "none"
+    //this.form.style.visible = "hidden"
     this.addEventsListeners()
     this.putFormInReadOnlyMode();
   }
@@ -122,7 +122,7 @@ class GUI {
 
     if (i > 0) {
       let first_key = Object.keys(registers)[0]
-      this.form.style.display = "inline";
+      //this.form.style.visible = "visible";
       this.updateForm(registers[first_key]);
       this.putFormInReadOnlyMode()
     }
