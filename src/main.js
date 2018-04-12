@@ -1,4 +1,4 @@
-const { BrowserWindow, app } = require("electron");
+const { BrowserWindow, app, Menu } = require("electron");
 
 const path = require("path");
 const url = require("url");
@@ -24,6 +24,10 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null;
   });
+
+  // Menú
+  let templateMenu = require('./menu.js').templateMenu
+  Menu.setApplicationMenu(Menu.buildFromTemplate(templateMenu))
 }
 
 // This method will be called when Electron has finished
