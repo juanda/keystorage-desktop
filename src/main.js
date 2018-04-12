@@ -1,4 +1,4 @@
-const { BrowserWindow, app, Menu } = require("electron");
+const { BrowserWindow, app, Menu, ipcMain } = require("electron");
 
 const path = require("path");
 const url = require("url");
@@ -55,3 +55,14 @@ app.on("activate", function() {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+// Recibimos los datos del fichero para el almacén de claves y
+// la clave de encriptación y lo enviamos a la pantalla principal
+ipcMain.on('load-keystorage', (e, args) => {
+  mainWindow.webContents.send('load-keystorage', args)
+})
+
+// Recibimos un registro a añadir y notificamos a la pantalla principal
+ipcMain.on('add-keyregister', (e, register) => {
+  mainWindow.webContents.send('add-keyregister', register)
+})

@@ -25,6 +25,7 @@ document.getElementById("btn_ok").onclick = () => {
     note: note
   };
 
+  // Enviamos el registro a añadir al proceso principal
   ipcRenderer.send("add-keyregister", register)
 
   window.close()

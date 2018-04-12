@@ -61,14 +61,14 @@ let mainMenu = browserWindow => {
           label: "Editar clave",
           accelerator: "CommandOrControl+E",
           click() {
-            console.log("edit-keyregister");
+            browserWindow.webContents.send('edit-keyregister')
           }
         },
         {
           label: "Eliminar clave",
           accelerator: "CommandOrControl+D",
           click() {
-            console.log("delete-keyregister");
+            browserWindow.webContents.send('delete-keyregister')
           }
         }
       ]

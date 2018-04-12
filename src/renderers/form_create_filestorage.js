@@ -34,5 +34,9 @@ document.getElementById("btn_ok").onclick = (e) => {
   let keyStorage = new KeyStorage(crypter, file)
   keyStorage.openDataFile(key)
 
+  // Enviamos los datos necesario para crear objetos KeyStorage al proceso
+  // principal
+  ipcRenderer.send('load-keystorage', { file: file, key: key })
+
   window.close()
 };
